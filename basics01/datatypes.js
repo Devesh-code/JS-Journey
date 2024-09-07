@@ -170,37 +170,79 @@ let obj = {
 };
 
 // another ways to create object
-let obj2 = new Object();
-console.log(obj2);
+// let obj2 = new Object();
+// console.log(obj2);
 
-let obj3 = Object.create(null);
-console.log(obj3);
+// let obj3 = Object.create(null);
+// console.log(obj3);
 
-let obj4 = Object.create(Object.prototype);
-console.log(obj4);
+// let obj4 = Object.create(Object.prototype);
+// console.log(obj4);
 
-console.log({
-  name: "John Cina",
-  age: 50,
-});
+// console.log({
+//   name: "John Cina",
+//   age: 50,
+// });
 
-// Array
-let arr = [1, 2, 3, 4, 5];
-let arr2 = new Array(1, 2, 3, 4, 5);
-let arr3 = Array.of(1, 2, 3, 4, 5);
-let arr4 = Array.from("hello");
-console.log(arr4);
+// // Array
+// let arr = [1, 2, 3, 4, 5];
+// let arr2 = new Array(1, 2, 3, 4, 5);
+// let arr3 = Array.of(1, 2, 3, 4, 5);
+// let arr4 = Array.from("hello");
+// console.log(arr4);
 
-// Function
+// // Function
 
-let func = function () {
-  console.log("Hello");
+// let func = function () {
+//   console.log("Hello");
+// };
+// console.log(func);
+
+// let func2 = new Function("console.log('Hello')");
+// console.log(func2);
+
+// let func3 = () => console.log("Hello");
+
+// console.log(func3);
+const myFunction = function (x, y) {
+  return x + y;
 };
-console.log(func);
+console.log(myFunction(2, 3));
 
-let func2 = new Function("console.log('Hello')");
-console.log(func2);
+//  Arrow function syntax (shorter for simple functions)
+const add = (x, y) => x + y;
+console.log(add(2, 3));
 
-let func3 = () => console.log("Hello");
+// Anonymous function for immediate execution
+(function () {
+  console.log("This function runs immediately!");
+})();
 
-console.log(func3);
+// memory representation of primitive and non-primitive data types
+// Primitive data types are stored in the stack memory
+// Stack memory is faster and has limited memory
+// Stack memory is used for static memory allocation
+// Stack memory is used for local variables and function calls where we get the copy of the orignal variable
+
+//Example
+let myname = "JohnWick";
+let anotherName = myname;
+myname = "JohnCina";
+console.log(anotherName); // JohnWick
+console.log(myname); // JohnCina
+
+// Non-primitive data types are stored in the heap memory
+// Heap memory is slower and has more memory
+// Heap memory is used for dynamic memory allocation
+// Heap memory is used for objects, arrays, functions, and other reference data types
+// Heap memory is used for global variables and objects where we get the reference of the orignal variable
+
+//Example
+let myObj = {
+  name: "JohnWick",
+  id: 1,
+};
+let anotherObj = myObj;
+myObj.name = "JohnCina";
+console.log(anotherObj.name); // JohnCina
+console.log(myObj.name); // JohnCina
