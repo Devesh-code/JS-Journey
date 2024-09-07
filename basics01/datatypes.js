@@ -12,10 +12,10 @@
 // 10. Array
 // 11. Date
 
-let n = NaN; // not a number
-console.log(typeof undefined); // undefined
-console.log(typeof null); // object
-console.log(typeof n);
+// let n = NaN; // not a number
+// console.log(typeof undefined); // undefined
+// console.log(typeof null); // object
+// console.log(typeof n);
 
 /*
 
@@ -69,3 +69,138 @@ It's worth noting that JavaScript is a dynamically typed language, meaning varia
 at different times during execution. The 'typeof' operator is used to determine the type of a value, as demonstrated above.
 
 */
+
+// ============================================================== Type Conversion =========================================================================
+// 1. Implicit Conversion (Type Coercion)
+// JavaScript automatically converts the data type of a value to another data type when needed.
+
+// Example: 1 + '1' => '11' (number is converted to string)
+// Example: 1 - '1' => 0 (string is converted to number)
+// Example: true + 1 => 2 (boolean is converted to number)
+// Example: '1' == 1 => true (string is converted to number for comparison)
+// Example: '1' === 1 => false (strict equality operator does not perform type conversion)
+
+// 2. Explicit Conversion
+// Developers can explicitly convert data types using built-in functions or operators.
+// Example: Number('1') => 1 (converts string to number)
+// Example: String(1) => '1' (converts number to string)
+// Example: Boolean(1) => true (converts number to boolean)
+// Example: parseInt('1') => 1 (parses string to integer)
+// Example: parseFloat('1.1') => 1.1 (parses string to float)
+// Example: String(1 + 1) => '2' (converts result of expression to string)
+// Example: Number('hello') => NaN (returns NaN for invalid conversion)
+// Example: Boolean(0) => false (converts number to boolean)
+// Example: Boolean('') => false (converts empty string to boolean)
+// Example: Boolean('hello') => true (converts non-empty string to boolean)
+// Example: Boolean(undefined) => false (converts undefined to boolean)
+// Example: Boolean(null) => false (converts null to boolean)
+// Example: Boolean(NaN) => false (converts NaN to boolean)
+// Example: Boolean([]) => true (converts non-empty array to boolean)
+// Example: Boolean({}) => true (converts non-empty object to boolean)
+// Example: Boolean(function() {}) => true (converts function to boolean)
+// Example: Boolean(Symbol()) => true (converts symbol to boolean)
+
+let x = 1;
+let a = "anything123";
+
+console.log(x + "1"); // 11
+console.log(typeof x);
+console.log(typeof a);
+
+let somethingNew = Number(a); //NaN
+console.log(somethingNew);
+
+//" 33anything" => NaN
+
+let check = 0.02;
+let findCheck = Boolean(check);
+console.log(findCheck);
+
+// in JS, 0, '', null, undefined, NaN => false
+// in JS, 1, 'anything', [], {}, function(){} => true
+// in JS, 0.1, -1, '0', 'false', 'null', 'undefined', 'NaN' => true
+
+// Js is loosely typed language so it has some weird behavior with maths operations
+let rounded = Math.round(0.1 + 0.2); // 0.3 => 0.30000000000000004
+console.log(rounded); // 0
+
+//================================================== operations ========================================================
+
+// console.log("1" + 2); // 12
+// console.log(1 + "2"); // 12
+// console.log(1 + 2); // 3
+// console.log("1" - 2); // -1
+// console.log(1 - "2"); // -1
+// console.log("1" - "2"); // -1
+// console.log("1" * "2"); // 2
+// console.log("1" / "2"); // 0.5
+// console.log("1" + 2 + 3); // 123
+// console.log(1 + 2 + "3"); // 33
+// console.log(1 + "2" + 3); // 123
+// console.log(1 + 2 * "3"); // 7
+// console.log(typeof ("1" - "3")); // number
+
+// console.log(null > 0); // false
+// console.log(null == 0);// false
+// console.log(null >= 0);// true because in <= and >=, null is converted to 0
+
+console.log(2 === "2"); // false
+console.log(2 == "2"); // true
+
+// clean code it is always better to use === and !==
+
+// ==================================================  interview warthy topics  ===========================================================================
+
+// In Js data types are divided into two categories on the basis of their behavior and how they are stored in memory.
+// Primitive data types
+// number, string, boolean, undefined, null, symbol, bigint // Primitive data types
+
+const id = Symbol("123");
+console.log(id);
+const anothqerId = Symbol("123");
+console.log(anothqerId);
+console.log(id === anothqerId);
+
+// Reference or Non-primitive data types
+// object, array, function, date
+
+let obj = {
+  name: "John",
+  age: 30,
+};
+
+// another ways to create object
+let obj2 = new Object();
+console.log(obj2);
+
+let obj3 = Object.create(null);
+console.log(obj3);
+
+let obj4 = Object.create(Object.prototype);
+console.log(obj4);
+
+console.log({
+  name: "John Cina",
+  age: 50,
+});
+
+// Array
+let arr = [1, 2, 3, 4, 5];
+let arr2 = new Array(1, 2, 3, 4, 5);
+let arr3 = Array.of(1, 2, 3, 4, 5);
+let arr4 = Array.from("hello");
+console.log(arr4);
+
+// Function
+
+let func = function () {
+  console.log("Hello");
+};
+console.log(func);
+
+let func2 = new Function("console.log('Hello')");
+console.log(func2);
+
+let func3 = () => console.log("Hello");
+
+console.log(func3);
