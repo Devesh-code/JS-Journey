@@ -208,3 +208,21 @@ console.log(student); // Devesh
 // Why we use destructuring? It makes the code cleaner and more readable. We can extract the properties of an object and assign them to variables in a single statement.
 // This destructuring will used in react when we will use props and states. To make the code more readable and clean we use destructuring.
 // We can also use destructuring with arrays.
+
+// How to iterate over objects in JavaScript
+// There are several ways to iterate over objects in JavaScript. We can use the for...in loop, Object.keys(), Object.values(), Object.entries() methods to iterate over objects.
+// The for...in loop is used to iterate over the enumerable properties of an object. It iterates over the properties of an object in arbitrary order.
+
+const myObj = {
+  js: "JavaScript",
+  py: "Python",
+  rb: "Ruby",
+};
+
+for (let key in myObj) {
+  console.log(key); // js py rb
+  console.log(myObj[key]); // JavaScript Python Ruby
+}
+
+// Can we use for of loop to iterate over objects?
+// No, we can not use the for...of loop to iterate over objects. The for...of loop is used to iterate over the values of an iterable object like an array or a string.

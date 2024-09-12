@@ -177,3 +177,11 @@ let aResultArr2 = allArrays.flat(2); // flatten the array to a depth of 2
 console.log(aResultArr2); // [1, 2, 3, 4, 5, "a", "b", "c"]
 let aResultArr3 = allArrays.flat(Infinity); // flatten the array to an infinite depth
 console.log(aResultArr3); // [1, 2, 3, 4, 5, "a", "b", "c"]
+
+// map method is used to iterate over the elements of an array and return a new array
+// syntax: array.map(callback function)
+
+let numbers = [1, 2, 3, 4, 5];
+let doubleNumbers = numbers.map(function (number) {
+  return number * 2;
+}); // it will return a new array with elements multiplied by 2
