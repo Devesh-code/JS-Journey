@@ -1,6 +1,6 @@
 // In javascript, arrays are also objects.
 // In js arrays are stored in the heap memory and they are dynamic in nature. which means we can add or remove elements(resizable) from the array anythime dynamically.
-// An array can hold diffrent diffqrent data types.
+// An array can hold different different data types.
 // When we copy an array, we are copying the reference of the original array (shallow copy) not the actual array but we can change the OG array with that refrence array.
 // But when we copy an array using the spread(...) operator, we are copying the actual array (deep copy) So we can't change the OG array with that copied array.
 
@@ -9,14 +9,14 @@ let arr0 = [1, 2, 3, 4, 5];
 // Shallow copy
 let anotherArr = arr0;
 arr0[0] = 100;
-//console.log(arr); // [100, 2, 3, 4, 5]
+//console.log(anotherArr); // [100, 2, 3, 4, 5]
 
 // Deep copy
 let anotherArr2 = [...arr0];
 arr0[0] = 200;
 console.log("arr values: ", arr0); // [200, 2, 3, 4, 5]
 anotherArr2[3] = 69;
-console.log("anotherArr2 values: ", anotherArr2); // [100, 2, 3, 4, 5]
+console.log("anotherArr2 values: ", anotherArr2); // [100, 2, 3, 69, 5]
 
 // however, note that this is only a shallow copy, so if the array contains nested objects, arrays, those nested objects will still be passed by reference. not deep copy.
 // example

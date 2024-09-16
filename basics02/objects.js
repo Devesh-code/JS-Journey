@@ -25,6 +25,7 @@ console.log(Object.getPrototypeOf(person)); // [object: null prototype] {}
 console.log(person.hasOwnProperty("name")); // true
 
 // symbol object declaration
+// sytax: const mySymbol = Symbol("mySymbol"); // here the name of the symbol is optional and is used for debugging purposes
 const mySymbol = Symbol("mySymbol");
 console.log([mySymbol]); // [Symbol(mySymbol)]
 
@@ -172,7 +173,7 @@ const persons = [
 ];
 // We can access the object properties in the array using the index and the dot notation or the bracket notation.
 console.log(persons[0].name); // Devesh
-console.log(persons[1].age); // 25
+console.log(persons[1].age); // 23
 
 console.log(Object.keys(person1)); // [ 'name', 'age', 'address' ]
 // The key() method returns an array of a given object's own enumerable property names, in the same order as we get with a normal loop.

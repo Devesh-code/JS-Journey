@@ -27,7 +27,7 @@ Special values: Infinity, -Infinity, NaN (Not a Number)
 String:
 Represents textual data.
 Can be enclosed in single quotes (''), double quotes (" "), or backticks (``).
-Preference is often given to double quotes ("").
+Preference is often given to double quotes ("") or (``).
 
 Boolean:
 Represents a logical entity with two values: true or false.
@@ -114,7 +114,7 @@ console.log(somethingNew);
 
 let check = 0.02;
 let findCheck = Boolean(check);
-console.log(findCheck);
+console.log(findCheck); // true
 
 // in JS, 0, '', null, undefined, NaN => false
 // in JS, 1, 'anything', [], {}, function(){} => true
@@ -230,6 +230,7 @@ let anotherName = myname;
 myname = "JohnCina";
 console.log(anotherName); // JohnWick
 console.log(myname); // JohnCina
+// In the above example, the value of myname is copied to anotherName, so changing the value of myname does not affect anotherName
 
 // Non-primitive data types are stored in the heap memory
 // Heap memory is slower and has more memory

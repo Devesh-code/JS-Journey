@@ -1,6 +1,6 @@
 // Maps in JavaScript are a collection of key-value pairs.
 //  map are similar to objects but the key can be of any type and keys and values are ordered in insertion order.
-// keys and values are qunique in map which duplicates are not allowed.
+// keys and values are qunique in map which means duplicates are not allowed.
 // Syntax: let myMap = new Map();
 // Methods: set(), get(), has(), delete(), clear(), size(), keys(), values(), entries()
 // set(): It is used to add elements to the map. It takes two arguments, first argument is the key and second argument is the value. It returns the map object.

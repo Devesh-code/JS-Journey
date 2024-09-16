@@ -1,7 +1,7 @@
 // Exicution contex in js
 // Execution context is the environment in which JavaScript code is executed. It consists of the scope chain, variable object, and this keyword.
 
-// suppose we have a web page : in that page : {} // the window object, Global exicution context and this keyword
+// suppose we have a web page : in that page we have: {} // the window object, Global exicution context and this keyword
 
 // when we run a js code in the browser, it creates a global execution context, which consists of the following components:
 // 1. Global object: In the case of a web browser, the global object is the window object.

@@ -1,0 +1,180 @@
+<!-- <!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Simple Name Greeting</title>
+    </head>
+    <body>
+        <h1>Learning DOM with examples</h1>
+        <label for="nameInput">Enter Your Name:</label>
+        <input type="text" id="nameInput" />
+        <button onclick="displayGreeting()">Submit</button>
+        <p id="greetingMessage">The Greeting Website</p>
+        <p id="hh">What is DOM?</>
+        <ul id="lst" , class="dom">
+            <li>DOM stands for Document Object Model.</li>
+            <li>It is a programming interface for web documents.</li>
+            <li>It represents the structure of a document as a tree.</li>
+        </ul>
+        <script>
+            function displayGreeting() {
+                // Get the entered name from the input field
+                var enteredName = document.getElementById("nameInput").value;
+
+                // Render the greeting message on the DOM using innerHTML
+                document.getElementById("greetingMessage").innerHTML =
+                    "Hello, " + enteredName + "!";
+            }
+        </script>
+    </body>
+</html> -->
+
+<!-- example of using setAttribute() method -->
+
+<!-- <!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Change Input to Button Example</title>
+    </head>
+    <body>
+        <input type="text" id="myInput" value="Type Something" />
+        <button id="bb" onclick="changeToButton()">Change to Button</button>
+
+        <script>
+            function changeToButton() {
+                // Get the input element
+                var inputElement = document.getElementById("myInput");
+
+                // Create a new button element
+                var buttonElement = document.createElement("button");
+
+                // Set attributes for the new button
+                buttonElement.setAttribute("type", "button");
+                buttonElement.setAttribute(
+                    "onclick",
+                    "alert('Button Clicked!')",
+                );
+                buttonElement.innerHTML = "Click Me";
+
+                // Replace the input with the new button
+                inputElement.parentNode.replaceChild(
+                    buttonElement,
+                    inputElement,
+                );
+            }
+        </script>
+    </body>
+</html> -->
+
+<!-- Example of event handling -->
+
+<!-- <!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Event Handling Example</title>
+    </head>
+    <body>
+        <h1>Event Handling Example</h1>
+        <button id="myButton">Click me</button>
+
+        <script>
+            var button = document.getElementById("myButton");
+
+            // Using DOM Level 2 event handling
+            button.addEventListener("click", function () {
+                alert("Button clicked!");
+            });
+        </script>
+    </body>
+</html> -->
+
+<!-- Example of onload event  -->
+
+<!-- <!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>onload Event Example</title>
+        <script>
+            window.onload = function () {
+                // Code to execute after the page has fully loaded
+                alert("Page loaded!");
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Hello, World!</h1>
+    </body>
+</html> -->
+
+<!-- Example of onunload events -->
+<!--
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>onunload Event Example</title>
+        <script>
+            window.onunload = function () {
+                // Code to execute before the page is unloaded
+                alert("Goodbye! Come back soon.");
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Thanks for visiting!</h1>
+    </body>
+</html> -->
+
+<!-- DOM Event Listeners -->
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Multiple Event Listeners Example</title>
+        <style>
+            #myButton {
+                padding: 10px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="myButton">Click me</button>
+
+        <script>
+            // Get the button element
+            var button = document.getElementById("myButton");
+
+            // Event listener for the "click" event
+            button.addEventListener("click", function () {
+                // Change the button color
+                button.style.backgroundColor = "green";
+                // Display a message
+                alert("Button clicked!");
+            });
+
+            // Event listener for the "mouseenter" event
+            button.addEventListener("mouseenter", function () {
+                // Change the button color on mouse enter
+                button.style.backgroundColor = "yellow";
+            });
+
+            // Event listener for the "mouseleave" event
+            button.addEventListener("mouseleave", function () {
+                // Reset the button color on mouse leave
+                button.style.backgroundColor = "";
+            });
+        </script>
+    </body>
+</html>
