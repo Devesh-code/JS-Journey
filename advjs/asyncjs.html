@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Asynchronous JavaScript Explained</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f4;
+            }
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1,
+            h2 {
+                color: #333;
+            }
+            pre {
+                background-color: #f0f0f0;
+                padding: 10px;
+                border-radius: 5px;
+                overflow-x: auto;
+            }
+            button {
+                padding: 10px 15px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            #output {
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #e9ecef;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Asynchronous JavaScript Explained</h1>
+
+            <h2>Why Asynchronous JavaScript?</h2>
+            <p>
+                JavaScript is single-threaded, meaning it can only execute one
+                task at a time. Asynchronous programming allows JavaScript to
+                perform long-running tasks without blocking the main thread,
+                keeping the application responsive.
+            </p>
+
+            <h2>Callbacks</h2>
+            <p>
+                Callbacks are functions passed as arguments to other functions,
+                to be executed once an asynchronous operation has completed.
+            </p>
+            <pre><code>
+function fetchData(callback) {
+    setTimeout(() => {
+        callback('Data fetched');
+    }, 2000);
+}
+
+fetchData((result) => {
+    console.log(result);
+});
+        </code></pre>
+            <button onclick="runCallback()">Run Callback Example</button>
+
+            <h2>Promises</h2>
+            <p>
+                Promises provide a cleaner way to handle asynchronous operations
+                and avoid callback hell.
+            </p>
+            <pre><code>
+function fetchDataPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Data fetched with Promise');
+        }, 2000);
+    });
+}
+
+fetchDataPromise().then(result => {
+    console.log(result);
+});
+        </code></pre>
+            <button onclick="runPromise()">Run Promise Example</button>
+
+            <h2>Async/Await</h2>
+            <p>
+                Async/Await is syntactic sugar built on top of Promises, making
+                asynchronous code look and behave more like synchronous code.
+            </p>
+            <pre><code>
+async function fetchDataAsync() {
+    const result = await fetchDataPromise();
+    console.log(result);
+}
+
+fetchDataAsync();
+        </code></pre>
+            <button onclick="runAsyncAwait()">Run Async/Await Example</button>
+
+            <h2>API and Fetch</h2>
+            <p>
+                The Fetch API provides a powerful and flexible feature for
+                making HTTP requests to servers.
+            </p>
+            <pre><code>
+fetch('https://api.github.com/users/github')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+        </code></pre>
+            <button onclick="runFetchExample()">Run Fetch Example</button>
+
+            <h2>Call, Apply, and Bind</h2>
+            <p>
+                These methods allow you to explicitly set the `this` value for
+                executing functions.
+            </p>
+            <pre><code>
+const person = {
+    fullName: function(city, country) {
+        console.log(this.firstName + " " + this.lastName + ", " + city + ", " + country);
+    }
+}
+
+const john = {
+    firstName:"John",
+    lastName: "Doe"
+}
+
+person.fullName.call(john, "New York", "USA");
+person.fullName.apply(john, ["New York", "USA"]);
+const boundFunction = person.fullName.bind(john);
+boundFunction("New York", "USA");
+        </code></pre>
+            <button onclick="runCallApplyBindExample()">
+                Run Call, Apply, Bind Example
+            </button>
+
+            <div id="output"></div>
+        </div>
+
+        <script>
+            function appendToOutput(text) {
+                const output = document.getElementById("output");
+                output.innerHTML += text + "<br>";
+            }
+
+            function runCallback() {
+                function fetchData(callback) {
+                    setTimeout(() => {
+                        callback("Data fetched with callback");
+                    }, 2000);
+                }
+
+                appendToOutput("Starting callback example...");
+                fetchData((result) => {
+                    appendToOutput(result);
+                });
+            }
+
+            function runPromise() {
+                function fetchDataPromise() {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve("Data fetched with Promise");
+                        }, 2000);
+                    });
+                }
+
+                appendToOutput("Starting Promise example...");
+                fetchDataPromise().then((result) => {
+                    appendToOutput(result);
+                });
+            }
+
+            async function runAsyncAwait() {
+                async function fetchDataAsync() {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve("Data fetched with Async/Await");
+                        }, 2000);
+                    });
+                }
+
+                appendToOutput("Starting Async/Await example...");
+                const result = await fetchDataAsync();
+                appendToOutput(result);
+            }
+
+            function runFetchExample() {
+                appendToOutput("Starting Fetch example...");
+                fetch("https://api.github.com/users/github")
+                    .then((response) => response.json())
+                    .then((data) =>
+                        appendToOutput(
+                            "Fetched GitHub user data: " + JSON.stringify(data),
+                        ),
+                    )
+                    .catch((error) => appendToOutput("Error: " + error));
+            }
+
+            function runCallApplyBindExample() {
+                const person = {
+                    fullName: function (city, country) {
+                        return (
+                            this.firstName +
+                            " " +
+                            this.lastName +
+                            ", " +
+                            city +
+                            ", " +
+                            country
+                        );
+                    },
+                };
+
+                const john = {
+                    firstName: "John",
+                    lastName: "Doe",
+                };
+
+                appendToOutput(
+                    "Call example: " +
+                        person.fullName.call(john, "New York", "USA"),
+                );
+                appendToOutput(
+                    "Apply example: " +
+                        person.fullName.apply(john, ["London", "UK"]),
+                );
+                const boundFunction = person.fullName.bind(john);
+                appendToOutput(
+                    "Bind example: " + boundFunction("Paris", "France"),
+                );
+            }
+        </script>
+    </body>
+</html>
+<!-- Responsive Design Explanation -->
+<!-- 1. Viewport Meta Tag -->
+<!-- In the <head> section, we have:
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     This ensures that the page width is set to the device width and the initial zoom level is 1.0,
+     which is crucial for responsive design on mobile devices. -->
+
+<!-- 2. CSS Media Queries -->
+<!-- Although not explicitly shown in this code, media queries can be used to apply different styles
+     for different screen sizes. For example:
+     @media (max-width: 600px) {
+         .container {
+             padding: 10px;
+         }
+     } -->
+
+<!-- 3. Fluid Layout -->
+<!-- The .container class uses max-width instead of a fixed width:
+     max-width: 800px;
+     This allows the container to shrink on smaller screens while maintaining a maximum width on larger ones. -->
+
+<!-- 4. Flexible Images -->
+<!-- If images were used, they should be made responsive with:
+     img {
+         max-width: 100%;
+         height: auto;
+     }
+     This ensures images scale down on smaller screens but don't exceed their original size. -->
+
+<!-- 5. Responsive Typography -->
+<!-- Using relative units like em or rem for font sizes instead of fixed pixel values
+     allows text to scale appropriately across different device sizes. -->
+
+<!-- 6. Flexible Box Sizing -->
+<!-- The use of padding and margin in percentages or em units can help maintain proportions across different screen sizes. -->
+
+<!-- 7. Mobile-First Approach -->
+<!-- While not explicitly shown, designing for mobile first and then scaling up for larger screens
+     is a common responsive design strategy. -->
+
+<!-- These techniques combined make the page adaptable to various screen sizes without the need for separate mobile and desktop versions. -->

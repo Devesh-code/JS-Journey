@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #bg {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <body id="bg">
+        <button id="startbutton">start</button>
+        <button id="stopbutton">stop</button>
+
+        <script>
+            let colorChangeInterval;
+
+            function startRandomColor() {
+                return setInterval(function () {
+                    document.getElementById("bg").style.backgroundColor =
+                        "#" + Math.floor(Math.random() * 16777215).toString(16);
+                }, 1000);
+            }
+
+            document
+                .getElementById("startbutton")
+                .addEventListener("click", function () {
+                    if (!colorChangeInterval) {
+                        colorChangeInterval = startRandomColor();
+                    }
+                });
+
+            document
+                .getElementById("stopbutton")
+                .addEventListener("click", function () {
+                    if (colorChangeInterval) {
+                        clearInterval(colorChangeInterval);
+                        colorChangeInterval = null;
+                    }
+                });
+        </script>
+    </body>
+</html>
+
+<!-- JavaScript Functionality -->
+<!-- - Declares a variable 'colorChangeInterval' to store the interval ID -->
+<!-- - Defines a function 'startRandomColor' that:
+       - Sets an interval to change background color every 1000ms (1 second)
+       - Generates a random color using Math.random() and converts it to a hex string
+       - Updates the background color of the element with id "bg" -->
+<!-- - Adds click event listeners to the start and stop buttons:
+       - Start button: Starts the color change interval if not already running
+       - Stop button: Stops the color change interval if it's running -->
+
+<!-- Script Explanation: -->
+<!-- 1. 'colorChangeInterval' is initialized as undefined -->
+<!-- 2. 'startRandomColor' function:
+       - Uses setInterval to repeatedly execute a function
+       - The inner function generates a random color and sets it as the background
+       - Returns the interval ID for later use -->
+<!-- 3. Start button event listener:
+       - Checks if 'colorChangeInterval' is falsy (not set)
+       - If so, calls 'startRandomColor' and stores the returned interval ID -->
+<!-- 4. Stop button event listener:
+       - Checks if 'colorChangeInterval' is truthy (set)
+       - If so, clears the interval using clearInterval
+       - Resets 'colorChangeInterval' to null -->
+<!-- 5. The color changing effect:
+       - Generates a random number between 0 and 16777215 (0xFFFFFF in decimal)
+       - Converts this number to a 6-digit hexadecimal string
+       - Applies this color to the background of the "bg" element -->

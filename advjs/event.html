@@ -1,0 +1,173 @@
+<!-- Going deeper in the events with help of some examples  -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Advanced JavaScript Events Demo</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                padding: 20px;
+            }
+            .box {
+                border: 2px solid black;
+                padding: 20px;
+                margin: 10px;
+            }
+            #output {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Advanced JavaScript Events Demo</h1>
+
+        <!-- Nested structure to demonstrate event bubbling and capturing -->
+        <div id="outer" class="box">
+            Outer
+            <div id="middle" class="box">
+                Middle
+                <div id="inner" class="box">
+                    Inner
+                    <button id="myButton">Click me!</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="output"></div>
+
+        <script>
+            // Function to log messages to the output div
+            function log(message) {
+                document.getElementById("output").innerHTML += message + "<br>";
+            }
+
+            // 1. Event Handlers
+            // Traditional event handler (older method)
+            window.onload = function () {
+                log("Window loaded (using traditional event handler)");
+            };
+
+            // 2. Event Listeners
+            // Modern way to add event listeners
+            document.addEventListener("DOMContentLoaded", function () {
+                log("DOM fully loaded (using addEventListener)");
+            });
+
+            // 3. The Event Object
+            document
+                .getElementById("myButton")
+                .addEventListener("click", function (event) {
+                    log("Button clicked!");
+                    log("Event type: " + event.type);
+                    log("Target element: " + event.target.tagName);
+                    log("Current target: " + event.currentTarget.id);
+                    log(
+                        "Coordinates: X=" +
+                            event.clientX +
+                            ", Y=" +
+                            event.clientY,
+                    );
+
+                    // Prevent the default action (if any)
+                    event.preventDefault();
+
+                    // Stop the event from bubbling up
+                    // event.stopPropagation();
+                });
+
+            // 4. Event Bubbling
+            // Events bubble up from the innermost element to the outer elements
+            document
+                .getElementById("inner")
+                .addEventListener("click", function () {
+                    log("Inner div clicked (bubbling phase)");
+                });
+
+            document
+                .getElementById("middle")
+                .addEventListener("click", function () {
+                    log("Middle div clicked (bubbling phase)");
+                });
+
+            document
+                .getElementById("outer")
+                .addEventListener("click", function () {
+                    log("Outer div clicked (bubbling phase)");
+                });
+
+            // 5. Event Capturing
+            // Events are captured from the outermost element to the inner elements
+            document.getElementById("outer").addEventListener(
+                "click",
+                function () {
+                    log("Outer div clicked (capturing phase)");
+                },
+                true,
+            );
+
+            document.getElementById("middle").addEventListener(
+                "click",
+                function () {
+                    log("Middle div clicked (capturing phase)");
+                },
+                true,
+            );
+
+            document.getElementById("inner").addEventListener(
+                "click",
+                function () {
+                    log("Inner div clicked (capturing phase)");
+                },
+                true,
+            );
+
+            // 6. Removing Event Listeners
+            function temporaryListener() {
+                log("This will only log once");
+                document.removeEventListener("click", temporaryListener);
+            }
+            document.addEventListener("click", temporaryListener);
+
+            // 7. Custom Events
+            let customEvent = new CustomEvent("myCustomEvent", {
+                detail: { message: "This is a custom event" },
+            });
+
+            document.addEventListener("myCustomEvent", function (e) {
+                log("Custom event triggered: " + e.detail.message);
+            });
+
+            // Dispatch the custom event after 2 seconds
+            setTimeout(() => {
+                document.dispatchEvent(customEvent);
+            }, 2000);
+        </script>
+    </body>
+</html>
+
+<!--
+Event Handlers: The traditional way to attach event handlers is by assigning a function to the event property of the element. For example, window.onload = function() { ... }.
+
+Event Listeners: The modern way to attach event listeners is by using the addEventListener method. This method allows you to attach multiple event listeners to the same event type. Demonstration of event listeners using the DOMContentLoaded event.
+
+The Event Object: Showcased in the button click event displaying various properties of the event object such as type, target, currentTarget, clientX, and clientY.
+
+Event Bubbling: Demonstrated by attaching click event listeners to nested div elements. When you click on the innermost div, the event bubbles up to the outer divs.
+
+Event Capturing: Also shown with nested divs. The `true` parameter in the addEventListener method enables capturing phase. The event is captured from the outermost element to the innermost element.
+
+Removing Event Listeners: Demonstrated by adding a temporary event listener that logs a message once and then removes itself using removeEventListener.
+
+Custom Events: Created a custom event named myCustomEvent with a custom message in the detail property. Dispatched the custom event after 2 seconds and listened for it using addEventListener.
+Custom events are useful for creating custom interactions between different parts of your application. They can be used to trigger actions based on specific conditions or user interactions.
+
+preventDefault: Prevents the default action of the event from occurring. For example, preventing a form submission or a link click. but can be used to stop event bubbling or propagation.
+
+stopPropagation: Stops the event from bubbling up the DOM tree, preventing parent elements from receiving the event.
+
+-->
