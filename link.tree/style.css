@@ -1,0 +1,146 @@
+* {
+    font-family: "Open Sans", sans-serif; /* Sets the default font for all elements */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    box-sizing: border-box; /* Includes padding and border in element's total width and height */
+}
+
+h1,
+h2,
+h3,
+.poppins {
+    font-family: "Poppins", sans-serif; /* Sets Poppins font for headings and elements with class 'poppins' */
+}
+
+body {
+    color: white; /* Sets text color to white */
+    position: relative; /* Enables positioning context for absolute positioned children */
+
+    justify-content: center; /* Centers content vertically */
+    gap: 42px; /* Adds 42px gap between flex items */
+    padding: 40px 14px; /* Adds padding to the body */
+    min-height: 100vh; /* Sets minimum height to full viewport height */
+    overflow-y: scroll; /* Enables vertical scrolling if content overflows */
+}
+
+.backgroundImg {
+    position: fixed; /* Fixes the position of the background image */
+    top: 0; /* Aligns to the top of the viewport */
+    left: 0; /* Aligns to the left of the viewport */
+    width: 100vw; /* Sets width to full viewport width */
+    height: 100vh; /* Sets height to full viewport height */
+    z-index: -2; /* Places the background behind other elements */
+}
+
+.backgroundImg img {
+    width: 100%; /* Sets image width to 100% of container */
+    height: 100%; /* Sets image height to 100% of container */
+    object-fit: cover; /* Ensures image covers the entire container */
+}
+
+header {
+    text-align: center; /* Centers text within the header */
+    gap: 14px; /* Adds 14px gap between flex items in the header */
+}
+
+body,
+header,
+main,
+.backgroundImg {
+    display: flex; /* Sets display to flex for these elements */
+    flex-direction: column; /* Arranges flex items in a column */
+}
+
+header img {
+    max-width: 140px; /* Sets maximum width for the header image */
+    width: 100%; /* Ensures image takes full width up to max-width */
+    margin: 0 auto; /* Centers the image horizontally */
+    border-radius: 100%; /* Makes the image circular */
+    margin-bottom: 8px; /* Adds bottom margin */
+}
+
+header mark {
+    border-radius: 4px; /* Rounds corners of marked text */
+    padding: 2px 4px; /* Adds padding to marked text */
+    background: white; /* Sets background color for marked text */
+    color: #0f172a; /* Sets text color for marked text */
+}
+
+header h1 {
+    font-size: 0.8em; /* Sets font size for h1 in header */
+    font-weight: 400; /* Sets font weight for h1 in header */
+}
+
+header p {
+    font-size: 0.9em; /* Sets font size for paragraphs in header */
+    font-weight: 700; /* Sets font weight for paragraphs in header */
+}
+
+main {
+    gap: 14px; /* Adds 14px gap between flex items in main */
+}
+
+.link {
+    position: relative; /* Enables positioning context for absolute positioned children */
+    display: flex; /* Sets display to flex */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Distributes space between flex items */
+    padding: 8px 14px; /* Adds padding to links */
+    border: 1px solid #334155; /* Adds border to links */
+    border-radius: 8px; /* Rounds corners of links */
+    width: 420px; /* Sets width of links */
+    max-width: 100%; /* Ensures links don't exceed container width */
+    margin: 0 auto; /* Centers links horizontally */
+    transition-duration: 200ms; /* Adds transition effect */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    overflow: hidden; /* Hides overflow content */
+    color: white; /* Sets text color to white */
+    text-decoration: none; /* Removes default text decoration */
+}
+
+.link:hover {
+    border-color: skyblue; /* Changes border color on hover */
+}
+
+.linkBackground {
+    position: absolute; /* Positions element absolutely within its container */
+    inset: 0; /* Stretches element to fill its container */
+    background: #020617; /* Sets background color */
+    opacity: 0.6; /* Sets opacity */
+    z-index: -1; /* Places element behind other content */
+}
+
+.link p {
+    font-size: 0.8em; /* Sets font size for paragraphs in links */
+}
+
+@media (min-width: 640px) {
+    body {
+        gap: 64px; /* Increases gap for larger screens */
+        padding: 80px 14px; /* Increases padding for larger screens */
+    }
+
+    header,
+    main {
+        gap: 24px; /* Increases gap for header and main on larger screens */
+    }
+
+    header img {
+        max-width: 200px; /* Increases max-width of header image for larger screens */
+        padding-bottom: 24px; /* Adds bottom padding to header image */
+    }
+
+    header h1 {
+        font-size: 1em; /* Increases font size of h1 for larger screens */
+        font-weight: 400; /* Sets font weight for h1 */
+    }
+
+    header p {
+        font-size: 1.1em; /* Increases font size of paragraphs for larger screens */
+        font-weight: 700; /* Sets font weight for paragraphs */
+    }
+
+    .link p {
+        font-size: 1.1em; /* Increases font size of paragraphs in links for larger screens */
+    }
+}
